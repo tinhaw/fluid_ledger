@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-surface-variant": "#454652", "surface-dim": "#d8dae0", "on-tertiary": "#ffffff", "on-secondary-fixed-variant": "#005312", "inverse-primary": "#bdc2ff", "secondary-fixed": "#a3f69c", outline: "#767683", "surface-container": "#eceef3", "on-primary-container": "#8690ee", "on-primary-fixed-variant": "#343d96", "surface-container-high": "#e7e8ee", "primary-fixed": "#e0e0ff", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#930010", "on-primary-fixed": "#000767", "tertiary-fixed-dim": "#ffb3ac", "error-container": "#ffdad6", "outline-variant": "#c6c5d4", "on-background": "#191c20", surface: "#f8f9ff", "surface-container-low": "#f2f3f9", "on-secondary": "#ffffff", "secondary-fixed-dim": "#88d982", "inverse-on-surface": "#eff0f6", "surface-bright": "#f8f9ff", error: "#ba1a1a", background: "#f8f9ff", secondary: "#1b6d24", "surface-container-lowest": "#ffffff", "primary-fixed-dim": "#bdc2ff", "on-primary": "#ffffff", "on-secondary-fixed": "#002204", "primary-container": "#1a237e", "tertiary-container": "#670008", "surface-tint": "#4c56af", "tertiary-fixed": "#ffdad6", "on-tertiary-fixed": "#410003", "on-error": "#ffffff", "on-secondary-container": "#217128", tertiary: "#400003", "on-surface": "#191c20", "inverse-surface": "#2e3135", "on-tertiary-container": "#ff635b", "secondary-container": "#a0f399", "surface-variant": "#e1e2e8", "surface-container-highest": "#e1e2e8", primary: "#000666"}, borderRadius: {DEFAULT: "0.5rem", lg: "1rem", xl: "1.5rem", full: "9999px"}, fontFamily: {headline: ["Montserrat"], body: ["Montserrat"], label: ["Montserrat"], display: "Montserrat"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { 
+            font-family: 'Arimo', sans-serif;
+            width: 428px;
+            height: 926px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            background-color: #f8f9ff;
+        }
+        .content-scroll::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface flex flex-col">
+<!-- TopAppBar - Fixed Height -->
+<header class="w-full bg-[#F8F9FF]/95 backdrop-blur-md z-50 flex-shrink-0">
+<div class="flex items-center justify-between px-8 pt-10 pb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#1A237E] text-3xl" data-icon="account_balance_wallet">account_balance_wallet</span>
+<h1 class="text-[#000666] font-bold text-2xl tracking-tight">云端账本</h1>
+</div>
+<button class="transition-transform active:scale-95 text-[#44474E] p-2 rounded-full">
+<span class="material-symbols-outlined text-2xl" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content Area -->
+<main class="flex-1 overflow-y-auto content-scroll px-6 space-y-6 pb-32">
+<!-- Circular Widgets Section -->
+<section class="flex gap-4 justify-between py-2">
+<!-- Total Inventory -->
+<div class="flex flex-col items-center flex-1">
+<div class="w-40 h-40 rounded-full border-primary-container flex items-center justify-center transition-all active:scale-95" style="background: linear-gradient(135deg, #ffffff 0%, #f0f2ff 100%); box-shadow: 0 10px 25px -5px rgba(26, 35, 126, 0.1), 0 8px 10px -6px rgba(26, 35, 126, 0.1), inset 0 -4px 8px rgba(26, 35, 126, 0.05); border-width: 12px; border-color: rgba(26, 35, 126, 0.15);">
+<div class="text-center">
+<span class="block font-black text-4xl text-primary">128</span>
+<span class="text-[11px] font-bold text-on-surface-variant tracking-[0.2em] uppercase mt-1">总件数</span>
+</div>
+</div>
+</div>
+<!-- Low Stock Alerts -->
+<div class="flex flex-col items-center flex-1">
+<div class="w-40 h-40 rounded-full border-error-container flex items-center justify-center transition-all active:scale-95" style="background: linear-gradient(135deg, #ffffff 0%, #fff0f0 100%); box-shadow: 0 10px 25px -5px rgba(186, 26, 26, 0.1), 0 8px 10px -6px rgba(186, 26, 26, 0.1), inset 0 -4px 8px rgba(186, 26, 26, 0.05); border-width: 12px; border-color: rgba(186, 26, 26, 0.15);">
+<div class="text-center">
+<span class="block font-black text-4xl text-error">05</span>
+<span class="text-[11px] font-bold text-on-surface-variant tracking-[0.2em] uppercase mt-1">低库存</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Search Bar Section -->
+<section class="relative">
+<div class="flex items-center bg-surface-container-lowest h-16 px-6 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-surface-container">
+<span class="material-symbols-outlined text-outline text-2xl mr-3" data-icon="search">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-lg font-medium placeholder:text-outline-variant" placeholder="搜索库存物品..." type="text"/>
+<button class="bg-primary-container text-white p-2.5 rounded-xl flex items-center justify-center shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-xl" data-icon="tune">tune</span>
+</button>
+</div>
+</section>
+<!-- Inventory List Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-2">
+<h2 class="font-bold text-xl text-primary-container">库存列表</h2>
+<span class="text-[11px] font-bold text-outline uppercase tracking-wider">最近更新</span>
+</div>
+<!-- Product Card: Pure Milk -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm flex items-center justify-between border-l-[6px] border-secondary">
+<div class="flex items-center gap-4 flex-1 min-w-0">
+<div class="w-20 h-20 rounded-2xl overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Pure Milk" class="w-full h-full object-cover" data-alt="Close-up photo of a glass milk bottle on a clean white surface with soft studio lighting and blue accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDowPmP9DtSDorl1008W-abc6cdwABnSxnlfDC-t0vmqTtLtXYSxQWZl5skOXyBfhqBHXc708stztgSrB6pQV9cSmegI7V5uPJfly4OHbD39sY8wC_BB0Hncs0sKNktqGxtwC3m_ulUWZNGBEdb4olFFVD0HQVmaRZqlU5A4fC2vqfFiQ3xDc7ur764ZzsLlIMnJq7eKrt9Z-dDYswaPSzuZ7E6UnRDZONczVZy5zKQZpWgYNvJXGFCehkmS-hgBywhcEEcNZGu8oo"/>
+</div>
+<div class="space-y-1 min-w-0 pr-2">
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight truncate">特仑苏纯牛奶</h3>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-medium text-[11px]">
+<span class="material-symbols-outlined text-sm" data-icon="event">event</span>
+<span class="truncate">2024-12-15 过期</span>
+</div>
+<div class="inline-block px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-lg text-[10px] font-bold uppercase tracking-wider">
+                            库存充足
+                        </div>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low p-1.5 rounded-2xl shrink-0">
+<button class="w-10 h-10 rounded-xl bg-white text-primary shadow-sm flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-xl font-bold" data-icon="remove">remove</span>
+</button>
+<span class="text-2xl font-black w-8 text-center text-primary">12</span>
+<button class="w-10 h-10 rounded-xl bg-primary-container text-white shadow-sm flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-xl font-bold" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Product Card: Rice -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm flex items-center justify-between border-l-[6px] border-error">
+<div class="flex items-center gap-4 flex-1 min-w-0">
+<div class="w-20 h-20 rounded-2xl overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Rice Bag" class="w-full h-full object-cover" data-alt="A textured burlap sack filled with white jasmine rice on a dark wooden table with warm rustic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJfVEPHZAUracQvCjvx1LZRrfLOJooxIOUsZcBlCl0-opmhsLbdAW_2Sm5mz8PEO5YOeiJsQ0_LUbsv83D1zhtdRPsXuJy-QslbBBCRHUymIsrBAIiIoqqnSzJIqlgFBtllpsViB3sJgtu3W6sBIFRuYmV5zh_JzsQJ1jVKbSCbAFP1d_CbfgrYhtp3GOgp2DVFXvZexajI8LFdJ9e1s9wGTUnHUQXn_RhYYAgl4XBxMq6F-6fZfiA6QSLhsDbXVETunfV6rkM9bQ"/>
+</div>
+<div class="space-y-1 min-w-0 pr-2">
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight truncate">五常大米 5kg</h3>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-medium text-[11px]">
+<span class="material-symbols-outlined text-sm" data-icon="event">event</span>
+<span class="truncate">2025-06-20 过期</span>
+</div>
+<div class="inline-block px-2 py-0.5 bg-error-container text-on-error-container rounded-lg text-[10px] font-bold uppercase tracking-wider">
+                            低库存
+                        </div>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low p-1.5 rounded-2xl shrink-0">
+<button class="w-10 h-10 rounded-xl bg-white text-primary shadow-sm flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-xl font-bold" data-icon="remove">remove</span>
+</button>
+<span class="text-2xl font-black w-8 text-center text-primary">02</span>
+<button class="w-10 h-10 rounded-xl bg-primary-container text-white shadow-sm flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-xl font-bold" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Product Card: Eggs -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm flex items-center justify-between border-l-[6px] border-secondary">
+<div class="flex items-center gap-4 flex-1 min-w-0">
+<div class="w-20 h-20 rounded-2xl overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Eggs" class="w-full h-full object-cover" data-alt="A carton of fresh organic brown eggs with straw on a grey stone surface in soft natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGaZ7jNg3HEOlKC1SMOKmz47Egu7d_w5d4jP0ZvWG8kDJo_K5JZyTVCJExoQnO57FP_jBkmKHjOQuEJzAIeFB8bK-VxpLLS1u4ND3U_NoeRU_ZldusEEgb4AfgIx1MI8q3TXs0BP7kgQrsdRRMKg8NkhYQzRa54Ric0B-wGyd4HTdULzGJQ4yLEE4E3Xhzh3sY7S2o82ANenPu9T2c_tDdojV46iMtWVf3Ja19oh6wbfhaqdMt1SOMtybYOkEix8CO-OJ_x3lb91Q"/>
+</div>
+<div class="space-y-1 min-w-0 pr-2">
+<h3 class="font-headline font-bold text-lg text-on-surface leading-tight truncate">走地鸡蛋 15枚</h3>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-medium text-[11px]">
+<span class="material-symbols-outlined text-sm" data-icon="event">event</span>
+<span class="truncate">2024-11-30 过期</span>
+</div>
+<div class="inline-block px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-lg text-[10px] font-bold uppercase tracking-wider">
+                            库存充足
+                        </div>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low p-1.5 rounded-2xl shrink-0">
+<button class="w-10 h-10 rounded-xl bg-white text-primary shadow-sm flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-xl font-bold" data-icon="remove">remove</span>
+</button>
+<span class="text-2xl font-black w-8 text-center text-primary">30</span>
+<button class="w-10 h-10 rounded-xl bg-primary-container text-white shadow-sm flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-xl font-bold" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar - Fixed Bottom, Full Width, No Rounded Corners -->
+<nav class="bg-white fixed bottom-0 left-0 right-0 w-full flex justify-between items-center px-4 pb-2 pt-1 z-[100] border-t border-surface-variant shadow-[0_-4px_16px_rgba(0,0,0,0.04)]">
+<div class="flex-1 flex flex-col items-center justify-center text-[#44474E] py-1 active:bg-[#F2F3F9] transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="home">home</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">首页</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center text-[#1A237E] py-1 active:bg-[#1A237E]/5 transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">库存</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center text-[#44474E] py-1 active:bg-[#F2F3F9] transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="receipt_long">receipt_long</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">账单</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center text-[#44474E] py-1 active:bg-[#F2F3F9] transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">我的</span>
+</div>
+</nav>
+</body></html>

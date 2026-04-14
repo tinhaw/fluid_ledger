@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>云端账本 - 账单</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-surface-variant": "#454652", "surface-dim": "#d8dae0", "on-tertiary": "#ffffff", "on-secondary-fixed-variant": "#005312", "inverse-primary": "#bdc2ff", "secondary-fixed": "#a3f69c", outline: "#767683", "surface-container": "#eceef3", "on-primary-container": "#8690ee", "on-primary-fixed-variant": "#343d96", "surface-container-high": "#e7e8ee", "primary-fixed": "#e0e0ff", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#930010", "on-primary-fixed": "#000767", "tertiary-fixed-dim": "#ffb3ac", "error-container": "#ffdad6", "outline-variant": "#c6c5d4", "on-background": "#191c20", surface: "#f8f9ff", "surface-container-low": "#f2f3f9", "on-secondary": "#ffffff", "secondary-fixed-dim": "#88d982", "inverse-on-surface": "#eff0f6", "surface-bright": "#f8f9ff", error: "#ba1a1a", background: "#f8f9ff", secondary: "#1b6d24", "surface-container-lowest": "#ffffff", "primary-fixed-dim": "#bdc2ff", "on-primary": "#ffffff", "on-secondary-fixed": "#002204", "primary-container": "#1a237e", "tertiary-container": "#670008", "surface-tint": "#4c56af", "tertiary-fixed": "#ffdad6", "on-tertiary-fixed": "#410003", "on-error": "#ffffff", "on-secondary-container": "#217128", tertiary: "#400003", "on-surface": "#191c20", "inverse-surface": "#2e3135", "on-tertiary-container": "#ff635b", "secondary-container": "#a0f399", "surface-variant": "#e1e2e8", "surface-container-highest": "#e1e2e8", primary: "#000666"}, borderRadius: {DEFAULT: "0.5rem", lg: "1rem", xl: "1.5rem", full: "9999px"}, fontFamily: {headline: ["Montserrat"], body: ["Montserrat"], label: ["Montserrat"], display: "Montserrat"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { 
+            font-family: 'Manrope', sans-serif;
+            width: 428px;
+            height: 926px;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: #f8f9ff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .font-serif { font-family: 'Noto Serif SC', serif; }
+        ::-webkit-scrollbar { display: none; }
+        main {
+            flex: 1;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-white">
+<!-- TopAppBar -->
+<header class="bg-[#F8F9FF]/95 backdrop-blur-md z-50 w-full shrink-0">
+<div class="flex items-center justify-between px-6 py-5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#1A237E] text-2xl" data-icon="account_balance_wallet">account_balance_wallet</span>
+<h1 class="font-serif font-black text-2xl tracking-tight text-[#000666]">云端账本</h1>
+</div>
+<button class="material-symbols-outlined text-[#44474E] p-2 rounded-full hover:bg-surface-container active:scale-90 transition-transform" data-icon="help_outline">help_outline</button>
+</div>
+</header>
+<!-- Main Content with padding bottom to avoid overlap -->
+<main class="px-6 space-y-6 pb-[80px]">
+<!-- Circular Widgets Section -->
+<section class="grid grid-cols-2 gap-5 py-2">
+<!-- Receivable Widget -->
+<button class="aspect-square rounded-full bg-primary-container flex flex-col items-center justify-center p-4 transition-transform active:scale-95 shadow-xl shadow-primary-container/10">
+<span class="text-on-primary-container text-[10px] uppercase tracking-[0.15em] font-extrabold mb-2">待收账款</span>
+<div class="flex flex-col items-center">
+<span class="font-serif text-3xl text-white font-black leading-none">¥28.4k</span>
+<div class="mt-3 bg-white/15 px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-white" data-icon="trending_up">trending_up</span>
+<span class="text-[11px] font-bold text-white">12%</span>
+</div>
+</div>
+</button>
+<!-- Payable Widget -->
+<button class="aspect-square rounded-full bg-error flex flex-col items-center justify-center p-4 transition-transform active:scale-95 shadow-xl shadow-error/10">
+<span class="text-white/80 text-[10px] uppercase tracking-[0.15em] font-extrabold mb-2">应付账款</span>
+<div class="flex flex-col items-center">
+<span class="font-serif text-3xl text-white font-black leading-none">¥15.2k</span>
+<div class="mt-3 bg-white/15 px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-white" data-icon="arrow_upward">arrow_upward</span>
+<span class="text-[11px] font-bold text-white">5%</span>
+</div>
+</div>
+</button>
+</section>
+<!-- Profit Overview Section -->
+<section class="space-y-4">
+<div class="flex items-end justify-between px-1">
+<h2 class="font-serif text-2xl font-black text-primary">利润概览</h2>
+<span class="text-[12px] font-bold text-outline mb-1">2024年 10月</span>
+</div>
+<div class="space-y-4">
+<!-- Today Card -->
+<div class="bg-surface-container-lowest p-5 rounded-lg flex items-center justify-between border-l-[6px] border-secondary shadow-sm">
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant font-bold text-[12px]">今日利润</span>
+<span class="font-serif text-3xl text-on-surface font-black">¥1,280</span>
+</div>
+<div class="w-24 flex items-end gap-1.5 h-12">
+<div class="flex-1 bg-secondary-container h-[40%] rounded-full opacity-60"></div>
+<div class="flex-1 bg-secondary-container h-[60%] rounded-full opacity-60"></div>
+<div class="flex-1 bg-secondary h-[90%] rounded-full"></div>
+<div class="flex-1 bg-secondary-container h-[50%] rounded-full opacity-60"></div>
+<div class="flex-1 bg-secondary-container h-[70%] rounded-full opacity-60"></div>
+</div>
+</div>
+<!-- Weekly/Monthly Bento Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-5 rounded-lg flex flex-col justify-between h-36 border border-outline-variant/30">
+<span class="text-on-surface-variant font-bold text-[12px]">本周累计</span>
+<div class="space-y-2">
+<span class="font-serif text-2xl text-on-surface font-black">¥8,420</span>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[75%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-lg flex flex-col justify-between h-36 shadow-sm border border-outline-variant/30">
+<span class="text-on-surface-variant font-bold text-[12px]">本月预估</span>
+<div class="space-y-2">
+<span class="font-serif text-2xl text-on-surface font-black">¥32.5k</span>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[45%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Fund Trend Chart Section -->
+<section class="bg-surface-container-low p-6 rounded-lg space-y-6 border border-outline-variant/20 overflow-hidden">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-serif text-xl font-bold text-on-surface">资金趋势</h3>
+<p class="text-on-surface-variant text-[12px] font-medium mt-0.5">最近7天的资金流动方向</p>
+</div>
+<button class="bg-surface-container-lowest p-2.5 rounded-xl shadow-sm active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant text-xl" data-icon="fullscreen">fullscreen</span>
+</button>
+</div>
+<!-- Chart Mockup -->
+<div class="relative h-44 w-full flex items-end justify-between px-1">
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 380 180">
+<path d="M0 150 Q 50 130, 100 140 T 200 40 T 300 90 T 380 10" fill="none" stroke="#1A237E" stroke-linecap="round" stroke-width="6"></path>
+<path d="M0 150 Q 50 130, 100 140 T 200 40 T 300 90 T 380 10 V 180 H 0 Z" fill="url(#gradient-chart-pro)" opacity="0.1"></path>
+<defs>
+<lineargradient id="gradient-chart-pro" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#1A237E;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#1A237E;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute inset-0 flex justify-between px-4 pointer-events-none opacity-[0.05]">
+<div class="w-px h-full bg-on-surface"></div>
+<div class="w-px h-full bg-on-surface"></div>
+<div class="w-px h-full bg-on-surface"></div>
+<div class="w-px h-full bg-on-surface"></div>
+<div class="w-px h-full bg-on-surface"></div>
+<div class="w-px h-full bg-on-surface"></div>
+</div>
+<div class="flex flex-col items-center z-10">
+<span class="text-[10px] font-extrabold text-outline mb-1.5">周一</span>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+</div>
+<div class="flex flex-col items-center z-10">
+<span class="text-[10px] font-extrabold text-outline mb-1.5">周二</span>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+</div>
+<div class="flex flex-col items-center z-10">
+<span class="text-[10px] font-extrabold text-outline mb-1.5">周三</span>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+</div>
+<div class="flex flex-col items-center z-10">
+<span class="text-[10px] font-extrabold text-primary mb-1.5">周四</span>
+<div class="w-2.5 h-2.5 rounded-full bg-primary ring-[4px] ring-primary/10"></div>
+</div>
+<div class="flex flex-col items-center z-10">
+<span class="text-[10px] font-extrabold text-outline mb-1.5">周五</span>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+</div>
+<div class="flex flex-col items-center z-10">
+<span class="text-[10px] font-extrabold text-outline mb-1.5">周六</span>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+</div>
+</div>
+</section>
+<!-- Smart Suggestion Card -->
+<div class="bg-surface-container-lowest p-5 rounded-lg border-l-[6px] border-primary shadow-sm flex items-start gap-4">
+<div class="bg-primary-fixed p-3 rounded-2xl flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="pt-0.5">
+<h4 class="font-black text-on-surface mb-1 text-[15px]">优化建议</h4>
+<p class="text-on-surface-variant text-[13px] leading-relaxed">你有 <span class="text-primary font-bold">3 笔</span> 账单即将到期，建议提前催促收款，以确保下周采购资金充足。</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-white fixed bottom-0 left-0 right-0 w-full flex justify-between items-center px-4 pb-2 pt-1 z-[100] border-t border-surface-variant shadow-[0_-4px_16px_rgba(0,0,0,0.04)]">
+<div class="flex-1 flex flex-col items-center justify-center text-[#44474E] py-1 active:bg-[#F2F3F9] transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">首页</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center text-[#44474E] py-1 active:bg-[#F2F3F9] transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2">inventory_2</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">库存</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center text-[#1A237E] py-1 active:bg-[#1A237E]/5 transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="receipt_long" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">账单</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center text-[#44474E] py-1 active:bg-[#F2F3F9] transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">我的</span>
+</div>
+</nav>
+</body></html>

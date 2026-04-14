@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>云端账本 - 我的</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-surface-variant": "#454652", "surface-dim": "#d8dae0", "on-tertiary": "#ffffff", "on-secondary-fixed-variant": "#005312", "inverse-primary": "#bdc2ff", "secondary-fixed": "#a3f69c", outline: "#767683", "surface-container": "#eceef3", "on-primary-container": "#8690ee", "on-primary-fixed-variant": "#343d96", "surface-container-high": "#e7e8ee", "primary-fixed": "#e0e0ff", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#930010", "on-primary-fixed": "#000767", "tertiary-fixed-dim": "#ffb3ac", "error-container": "#ffdad6", "outline-variant": "#c6c5d4", "on-background": "#191c20", surface: "#f8f9ff", "surface-container-low": "#f2f3f9", "on-secondary": "#ffffff", "secondary-fixed-dim": "#88d982", "inverse-on-surface": "#eff0f6", "surface-bright": "#f8f9ff", error: "#ba1a1a", background: "#f8f9ff", secondary: "#1b6d24", "surface-container-lowest": "#ffffff", "primary-fixed-dim": "#bdc2ff", "on-primary": "#ffffff", "on-secondary-fixed": "#002204", "primary-container": "#1a237e", "tertiary-container": "#670008", "surface-tint": "#4c56af", "tertiary-fixed": "#ffdad6", "on-tertiary-fixed": "#410003", "on-error": "#ffffff", "on-secondary-container": "#217128", tertiary: "#400003", "on-surface": "#191c20", "inverse-surface": "#2e3135", "on-tertiary-container": "#ff635b", "secondary-container": "#a0f399", "surface-variant": "#e1e2e8", "surface-container-highest": "#e1e2e8", primary: "#000666"}, borderRadius: {DEFAULT: "0.5rem", lg: "1rem", xl: "1.5rem", full: "9999px"}, fontFamily: {headline: ["Montserrat"], body: ["Montserrat"], label: ["Montserrat"], display: "Montserrat"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { 
+            font-family: 'Arimo', sans-serif;
+            width: 428px;
+            height: 926px;
+            margin: 0 auto;
+            background-color: #f8f9ff;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .serif-headline { font-family: 'Noto Serif SC', serif; }
+        
+        .toggle-switch {
+            width: 52px;
+            height: 32px;
+            border-radius: 999px;
+            position: relative;
+            transition: background-color 0.2s;
+            flex-shrink: 0;
+        }
+        .toggle-handle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            position: absolute;
+            top: 4px;
+            transition: transform 0.2s;
+        }
+        
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-[#F8F9FF]/80 backdrop-blur-md sticky top-0 z-50 w-full shrink-0">
+<div class="flex items-center justify-between px-6 py-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#1A237E] text-2xl" data-icon="account_balance_wallet">account_balance_wallet</span>
+<h1 class="font-headline font-bold text-2xl tracking-tight text-[#1A237E]">云端账本</h1>
+</div>
+<span class="material-symbols-outlined text-[#44474E] text-2xl" data-icon="help_outline">help_outline</span>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto no-scrollbar px-6 space-y-8 pb-32">
+<!-- Profile Header Section -->
+<section class="mt-2">
+<div class="bg-surface-container-lowest rounded-lg p-8 flex flex-col items-center gap-6 text-center shadow-sm">
+<div class="relative">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface-container">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSp2TQX38T_vUnnPFja8WIg3Mb8KRCmqUfATx1XDoz-mQDElZ8gtu7SHA0xbwToqsQg7svu2XlaSCK1ahN5uT8SgJve6Ly2MkpyAsP_f4a3xCbBL3ZnJ5KHcxSmX5eSiocnTVRbg2nm5AICiN7gm_0KMlVyTtk8PrUUPB-1f7CZ56fZJLnNbrxCsYO5yXzuqLYsIgOU62_2W80ZRKw4W_SrcGHCK7M1cyu18pvJw8e1d4vG2pbWt9030AZX_Raqg1CmYyubFG9Gfk"/>
+</div>
+<div class="absolute bottom-1 right-1 bg-secondary text-white p-2 rounded-full border-4 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-xs block" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="space-y-1">
+<h2 class="serif-headline text-3xl font-black text-primary">老王便利店</h2>
+<p class="text-on-surface-variant font-medium text-base">账户ID: 8820 9931</p>
+</div>
+</div>
+</section>
+<!-- Convenient Operations Section -->
+<section class="space-y-4">
+<h3 class="serif-headline text-xl font-bold text-on-surface px-1">便捷操作</h3>
+<div class="space-y-4">
+<!-- Voice Broadcast Toggle -->
+<div class="bg-surface-container-lowest rounded-lg p-6 flex items-center justify-between shadow-sm active:scale-[0.98] transition-all">
+<div class="flex items-center gap-5 overflow-hidden">
+<div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed shrink-0">
+<span class="material-symbols-outlined text-2xl" data-icon="record_voice_over">record_voice_over</span>
+</div>
+<div class="truncate">
+<p class="font-bold text-lg truncate">语音播报</p>
+<p class="text-sm text-on-surface-variant truncate">收款实时提醒</p>
+</div>
+</div>
+<button class="toggle-switch bg-secondary-container">
+<div class="toggle-handle bg-secondary right-1"></div>
+</button>
+</div>
+<!-- Popup Messages Toggle -->
+<div class="bg-surface-container-lowest rounded-lg p-6 flex items-center justify-between shadow-sm active:scale-[0.98] transition-all">
+<div class="flex items-center gap-5 overflow-hidden">
+<div class="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-2xl" data-icon="notifications_active">notifications_active</span>
+</div>
+<div class="truncate">
+<p class="font-bold text-lg truncate">弹窗消息</p>
+<p class="text-sm text-on-surface-variant truncate">重要库存警报</p>
+</div>
+</div>
+<button class="toggle-switch bg-outline-variant">
+<div class="toggle-handle bg-surface-container-lowest left-1"></div>
+</button>
+</div>
+</div>
+</section>
+<!-- Notifications & Settings -->
+<section class="space-y-4">
+<h3 class="serif-headline text-xl font-bold text-on-surface px-1">消息设置</h3>
+<div class="bg-surface-container-low rounded-lg p-2 space-y-2 shadow-sm">
+<div class="bg-surface-container-lowest rounded-md p-6 flex items-center justify-between">
+<div class="flex items-center gap-5 overflow-hidden">
+<span class="material-symbols-outlined text-on-surface-variant shrink-0" data-icon="mail">mail</span>
+<span class="font-bold text-lg truncate">营销短信</span>
+</div>
+<button class="toggle-switch bg-outline-variant scale-90 origin-right">
+<div class="toggle-handle bg-surface-container-lowest left-1"></div>
+</button>
+</div>
+<div class="bg-surface-container-lowest rounded-md p-6 flex items-center justify-between">
+<div class="flex items-center gap-5 overflow-hidden">
+<span class="material-symbols-outlined text-on-surface-variant shrink-0" data-icon="history">history</span>
+<span class="font-bold text-lg truncate">历史账单推送</span>
+</div>
+<button class="toggle-switch bg-secondary-container scale-90 origin-right">
+<div class="toggle-handle bg-secondary right-1"></div>
+</button>
+</div>
+</div>
+</section>
+<!-- Data Backup -->
+<section class="pb-10">
+<div class="bg-surface-container-lowest rounded-lg p-7 border-l-[8px] border-primary flex flex-col gap-6 shadow-sm">
+<div class="flex items-start gap-5">
+<div class="w-16 h-16 shrink-0 rounded-2xl bg-primary-fixed-dim flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-4xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<div class="space-y-2">
+<h4 class="font-bold text-xl">备份我的数据</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">您的账本已于 2小时前 完成自动同步，手动备份可确保数据安全。</p>
+</div>
+</div>
+<button class="w-full min-h-[64px] px-6 bg-gradient-to-b from-primary to-primary-container text-white rounded-xl font-bold text-lg active:scale-95 transition-all shadow-lg shadow-primary/20">
+                    立即备份
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-white fixed bottom-0 left-0 right-0 w-full flex justify-between items-center px-4 pb-2 pt-1 z-[100] border-t border-surface-variant shadow-[0_-4px_16px_rgba(0,0,0,0.04)]">
+<div class="flex-1 flex flex-col items-center justify-center text-[#44474E] py-1 active:bg-[#F2F3F9] transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">首页</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center text-[#44474E] py-1 active:bg-[#F2F3F9] transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2">inventory_2</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">库存</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center text-[#44474E] py-1 active:bg-[#F2F3F9] transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="receipt_long">receipt_long</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">账单</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center text-[#1A237E] py-1 active:bg-[#1A237E]/5 transition-all rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-sans font-bold text-[11px] mt-0.5">我的</span>
+</div>
+</nav>
+</body></html>
