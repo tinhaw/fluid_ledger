@@ -9,12 +9,14 @@ const props = withDefaults(
     icon?: string;
     showTabs?: boolean;
     showBack?: boolean;
+    showNavBtn?: boolean;
   }>(),
   {
     eyebrow: '',
     icon: 'account_balance_wallet',
     showTabs: true,
     showBack: false,
+    showNavBtn: false,
   },
 );
 
@@ -23,6 +25,15 @@ const router = useRouter();
 
 <template>
   <div class="prototype-shell">
+    <button
+      v-if="props.showNavBtn"
+      class="side-nav-btn"
+      type="button"
+      aria-label="原型导航"
+      @click="router.push({ name: 'nav' })"
+    >
+      <span class="icon">grid_view</span>
+    </button>
     <div class="phone-frame">
       <div class="page-scroll">
         <header class="screen-header">
@@ -47,12 +58,13 @@ const router = useRouter();
           <slot name="header-actions" />
         </header>
 
-        <main class="screen-body" :class="{ withTabs: props.showTabs }">
+        <main class="screen-body" :class="{ withTabs: props.showTabs, withVoiceBar: !!$slots['bottom-bar'] }">
           <slot />
         </main>
       </div>
 
       <BottomTabs v-if="props.showTabs" />
+      <slot name="bottom-bar" />
     </div>
   </div>
 </template>
@@ -67,8 +79,10 @@ const router = useRouter();
   justify-content: space-between;
   gap: 12px;
   padding: 20px 20px 14px;
-  background: linear-gradient(180deg, rgba(248, 249, 255, 0.98) 0%, rgba(248, 249, 255, 0.9) 80%, transparent 100%);
-  backdrop-filter: blur(16px);
+  background: rgba(248, 249, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .header-meta {
@@ -116,5 +130,41 @@ const router = useRouter();
 
 .screen-body.withTabs {
   padding-bottom: 118px;
+}
+
+.screen-body.withVoiceBar {
+  padding-bottom: 140px;
+}
+
+.prototype-shell {
+  position: relative;
+}
+
+.side-nav-btn {
+  position: fixed;
+  top: 50vh;
+  left: 20px;
+  transform: translateY(-50%);
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(220, 20, 120, 0.25);
+  color: #fff;
+  font-size: 20px;
+  box-shadow: 0 4px 14px rgba(200, 0, 100, 0.3);
+  backdrop-filter: blur(6px);
+  transition: background 0.15s, transform 0.12s;
+}
+
+.side-nav-btn:hover {
+  background: rgba(220, 20, 120, 0.40);
+}
+
+.side-nav-btn:active {
+  transform: scale(0.93);
 }
 </style>

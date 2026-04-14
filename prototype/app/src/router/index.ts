@@ -9,6 +9,11 @@ export const router = createRouter({
       component: () => import('../pages/SplashPage.vue'),
     },
     {
+      path: '/nav',
+      name: 'nav',
+      component: () => import('../pages/NavPage.vue'),
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../pages/LoginPage.vue'),

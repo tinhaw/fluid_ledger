@@ -38,51 +38,48 @@ const filteredItems = computed(() =>
     </section>
 
     <section class="list-stack">
-      <article
-        v-for="item in filteredItems"
-        :key="item.id"
-        class="inventory-item card"
-        :class="item.status"
-      >
-        <div class="item-main">
-          <div class="item-copy">
-            <p class="section-title">{{ item.category }}</p>
-            <h3>{{ item.name }}</h3>
-            <p class="muted">{{ item.expiryLabel }}</p>
-            <div class="status-row">
+      <table class="inv-table">
+        <thead>
+          <tr>
+            <th>商品</th>
+            <th>分类</th>
+            <th class="num">库存</th>
+            <th>状态</th>
+            <th class="num">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="item in filteredItems"
+            :key="item.id"
+            :class="item.status"
+          >
+            <td class="name-cell">
+              <span class="item-name">{{ item.name }}</span>
+              <span class="item-expiry">{{ item.expiryLabel }}</span>
+            </td>
+            <td>{{ item.category }}</td>
+            <td class="num">
+              <strong>{{ item.quantity }}</strong>
+              <span class="unit">{{ item.unit }}</span>
+            </td>
+            <td>
               <span
                 class="status-pill"
-                :class="
-                  item.status === 'healthy'
-                    ? 'success'
-                    : item.status === 'low'
-                      ? 'warning'
-                      : 'primary'
-                "
+                :class="item.status === 'healthy' ? 'success' : item.status === 'low' ? 'warning' : 'primary'"
               >
-                {{
-                  item.status === 'healthy'
-                    ? '库存充足'
-                    : item.status === 'low'
-                      ? '低库存'
-                      : '已缺货'
-                }}
+                {{ item.status === 'healthy' ? '充足' : item.status === 'low' ? '低库存' : '缺货' }}
               </span>
-              <span class="muted">预警值 {{ item.threshold }}{{ item.unit }}</span>
-            </div>
-          </div>
-
-          <div class="stepper">
-            <button type="button" @click="store.adjustInventory(item.id, -1)">
-              <span class="icon">remove</span>
-            </button>
-            <strong>{{ item.quantity }}</strong>
-            <button type="button" @click="store.adjustInventory(item.id, 1)">
-              <span class="icon">add</span>
-            </button>
-          </div>
-        </div>
-      </article>
+            </td>
+            <td class="num">
+              <div class="stepper">
+                <button type="button" @click="store.adjustInventory(item.id, -1)"><span class="icon">remove</span></button>
+                <button type="button" @click="store.adjustInventory(item.id, 1)"><span class="icon">add</span></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   </ScreenLayout>
 </template>
@@ -155,71 +152,96 @@ const filteredItems = computed(() =>
   background: rgba(26, 35, 126, 0.06);
 }
 
-.inventory-item {
-  padding: 18px;
+.list-stack {
+  overflow-x: auto;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 2px 12px rgba(26, 35, 126, 0.06);
 }
 
-.inventory-item.low {
-  border-left: 6px solid rgba(217, 72, 65, 0.8);
+.inv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
 }
 
-.inventory-item.healthy {
-  border-left: 6px solid rgba(31, 139, 77, 0.8);
+.inv-table thead tr {
+  border-bottom: 1.5px solid rgba(26,35,126,0.08);
 }
 
-.inventory-item.out {
-  border-left: 6px solid rgba(26, 35, 126, 0.4);
+.inv-table th {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  white-space: nowrap;
 }
 
-.item-main {
+.inv-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(26,35,126,0.05);
+  vertical-align: middle;
+}
+
+.inv-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.inv-table tbody tr.low td:first-child {
+  border-left: 3px solid rgba(217, 72, 65, 0.8);
+}
+
+.inv-table tbody tr.healthy td:first-child {
+  border-left: 3px solid rgba(31, 139, 77, 0.8);
+}
+
+.inv-table tbody tr.out td:first-child {
+  border-left: 3px solid rgba(26, 35, 126, 0.4);
+}
+
+.num {
+  text-align: right;
+}
+
+.name-cell {
   display: flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.item-copy h3 {
-  margin: 8px 0 6px;
-  font-size: 24px;
+.item-name {
+  font-weight: 700;
   color: var(--primary-strong);
 }
 
-.item-copy p {
-  margin: 0;
+.item-expiry {
+  font-size: 11px;
+  color: var(--text-soft);
 }
 
-.status-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  margin-top: 14px;
+.unit {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-left: 2px;
 }
 
 .stepper {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px;
-  border-radius: 22px;
-  background: rgba(26, 35, 126, 0.05);
+  gap: 4px;
 }
 
 .stepper button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
   color: var(--primary);
-  background: rgba(255, 255, 255, 0.94);
-}
-
-.stepper strong {
-  min-width: 30px;
-  text-align: center;
-  font-size: 24px;
-  color: var(--primary-strong);
+  background: rgba(26, 35, 126, 0.07);
 }
 </style>

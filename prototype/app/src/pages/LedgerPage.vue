@@ -56,29 +56,29 @@ const store = usePrototypeStore();
         </div>
       </div>
 
-      <article v-for="txn in store.state.transactions.slice(0, 6)" :key="txn.id" class="txn card">
-        <div class="txn-head">
-          <div>
-            <strong>{{ txn.title }}</strong>
-            <p>{{ txn.summary }}</p>
-          </div>
-          <span
-            class="amount"
-            :class="
-              txn.type === 'sale_paid' || txn.type === 'collection'
-                ? 'income'
-                : 'expense'
-            "
-          >
-            {{
-              txn.type === 'sale_paid' || txn.type === 'collection'
-                ? `+${formatCurrency(txn.amount)}`
-                : `-${formatCurrency(txn.amount)}`
-            }}
-          </span>
-        </div>
-        <small>{{ txn.happenedAt }}</small>
-      </article>
+      <table class="txn-table">
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>标题</th>
+            <th>摘要</th>
+            <th class="num">金额</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="txn in store.state.transactions.slice(0, 6)" :key="txn.id">
+            <td class="time-cell">{{ txn.happenedAt }}</td>
+            <td><strong>{{ txn.title }}</strong></td>
+            <td class="summary-cell">{{ txn.summary }}</td>
+            <td
+              class="num amount"
+              :class="txn.type === 'sale_paid' || txn.type === 'collection' ? 'income' : 'expense'"
+            >
+              {{ txn.type === 'sale_paid' || txn.type === 'collection' ? '+' : '-' }}{{ formatCurrency(txn.amount) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   </ScreenLayout>
 </template>
@@ -193,44 +193,66 @@ const store = usePrototypeStore();
 
 .transactions {
   margin-top: 20px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 2px 12px rgba(26, 35, 126, 0.06);
+  overflow: hidden;
 }
 
 .section-header {
-  margin-bottom: 12px;
+  padding: 16px 16px 0;
+  margin-bottom: 0;
 }
 
-.section-header h3 {
-  margin: 8px 0 0;
-  font-size: 24px;
-  color: var(--primary-strong);
+.txn-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
 }
 
-.txn {
-  padding: 18px;
-  margin-top: 12px;
+.txn-table thead tr {
+  border-bottom: 1.5px solid rgba(26,35,126,0.08);
 }
 
-.txn-head {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.txn strong {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 18px;
-}
-
-.txn p,
-.txn small {
-  margin: 0;
+.txn-table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text-soft);
+  white-space: nowrap;
+}
+
+.txn-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(26,35,126,0.05);
+  vertical-align: middle;
+}
+
+.txn-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.time-cell {
+  white-space: nowrap;
+  color: var(--text-soft);
+  font-size: 12px;
+}
+
+.summary-cell {
+  color: var(--text-soft);
+  font-size: 12px;
+}
+
+.num {
+  text-align: right;
+  white-space: nowrap;
 }
 
 .amount {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 800;
 }
 

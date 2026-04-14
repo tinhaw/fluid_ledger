@@ -38,23 +38,31 @@ const store = usePrototypeStore();
     </section>
 
     <section class="list-stack">
-      <article v-for="item in store.state.payables" :key="item.id" class="record card">
-        <div class="record-head">
-          <div>
-            <p class="section-title">{{ item.createdAt }}</p>
-            <h3>{{ item.supplier }}</h3>
-          </div>
-          <span class="amount">{{ formatCurrency(item.amount) }}</span>
-        </div>
-        <p class="muted">{{ item.note }}</p>
-        <div class="meta-row">
-          <span class="status-pill" :class="item.overdue ? 'warning' : 'primary'">{{ item.dueLabel }}</span>
-        </div>
-        <div class="actions">
-          <button class="button-secondary" type="button">安排付款</button>
-          <button class="button-primary" type="button" @click="store.settlePayable(item.id)">标记已付</button>
-        </div>
-      </article>
+      <table class="pay-table">
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>供应商</th>
+            <th class="status-th">状态</th>
+            <th class="num">金额</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in store.state.payables" :key="item.id" :class="{ overdue: item.overdue }">
+            <td class="time-cell">
+              <span class="time-date">{{ item.createdAt.split(' ')[0] }}</span>
+              <span class="time-hour">{{ item.createdAt.split(' ').slice(1).join(' ') }}</span>
+            </td>
+            <td><strong style="font-size:11px">{{ item.supplier }}</strong></td>
+            <td class="status-cell">
+              <span class="status-pill" :class="item.overdue ? 'warning' : 'primary'">{{ item.dueLabel }}</span>
+            </td>
+            <td class="num amount">{{ formatCurrency(item.amount) }}</td>
+            <td class="note-cell">{{ item.note }}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   </ScreenLayout>
 </template>
@@ -115,40 +123,102 @@ const store = usePrototypeStore();
   background: linear-gradient(135deg, #d94841 0%, #b42318 100%);
 }
 
-.record {
-  padding: 18px;
+.list-stack {
+  border-radius: 18px;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 2px 12px rgba(26, 35, 126, 0.06);
+  overflow: hidden;
 }
 
-.record-head {
-  display: flex;
-  gap: 12px;
-  justify-content: space-between;
-  align-items: flex-start;
+.pay-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
 }
 
-.record-head h3 {
-  margin: 8px 0 0;
-  font-size: 24px;
-  color: var(--primary-strong);
+.pay-table thead tr {
+  border-bottom: 1.5px solid rgba(217,72,65,0.1);
+}
+
+.pay-table th {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+.pay-table td {
+  padding: 11px 12px;
+  border-bottom: 1px solid rgba(217,72,65,0.05);
+  vertical-align: middle;
+}
+
+.pay-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.pay-table tbody tr.overdue td:first-child {
+  border-left: 3px solid rgba(217, 72, 65, 0.8);
+}
+
+.time-cell {
+  color: var(--text-soft);
+  font-size: 12px;
+}
+
+.time-date {
+  display: block;
+  white-space: nowrap;
+}
+
+.time-hour {
+  display: block;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+.status-th {
+  min-width: 90px;
+}
+
+.status-cell {
+  min-width: 90px;
+}
+
+.status-cell .status-pill {
+  font-size: 9px;
+}
+
+.note-cell {
+  color: var(--text-soft);
+  font-size: 10px;
+}
+
+.num {
+  text-align: right;
+  white-space: nowrap;
 }
 
 .amount {
-  font-size: 28px;
+  font-size: 14px;
   font-weight: 800;
   color: var(--warning);
 }
 
-.meta-row {
+.btn-group {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
+  gap: 6px;
+  white-space: nowrap;
 }
 
-.actions {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 16px;
+.sm {
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 12px;
+  border-radius: 10px;
 }
 </style>

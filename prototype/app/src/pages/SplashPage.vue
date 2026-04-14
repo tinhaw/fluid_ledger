@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { usePrototypeStore } from '../stores/prototype';
 
 const router = useRouter();
+const route = useRoute();
 const store = usePrototypeStore();
 
 onMounted(() => {
+  if (route.query.manual) return;
+
   window.setTimeout(() => {
     if (!store.state.isLoggedIn) {
       router.replace({ name: 'login' });
@@ -40,6 +43,10 @@ onMounted(() => {
         <div class="loading-line">
           <span></span>
         </div>
+        <button class="nav-shortcut" type="button" @click="router.push({ name: 'nav' })">
+          <span class="icon">grid_view</span>
+          原型导航
+        </button>
       </div>
     </div>
   </div>
@@ -137,5 +144,24 @@ onMounted(() => {
   100% {
     transform: translateX(175%);
   }
+}
+
+.nav-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: rgba(26, 35, 126, 0.08);
+  color: #1a237e;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.nav-shortcut:hover {
+  background: rgba(26, 35, 126, 0.14);
 }
 </style>

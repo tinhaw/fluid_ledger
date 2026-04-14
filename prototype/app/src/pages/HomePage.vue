@@ -23,7 +23,7 @@ const submit = () => {
 </script>
 
 <template>
-  <ScreenLayout :title="store.state.profile.shopName" eyebrow="P1 AI 对话记账" icon="chat_bubble">
+  <ScreenLayout :title="store.state.profile.shopName" eyebrow="P1 AI 对话记账" icon="chat_bubble" :show-tabs="false" :show-nav-btn="true">
     <section class="hero card">
       <div>
         <p class="section-title">今天的生意</p>
@@ -136,23 +136,19 @@ const submit = () => {
       </article>
     </section>
 
-    <section class="composer card">
-      <textarea
-        v-model="prompt"
-        class="composer-input"
-        rows="3"
-        placeholder="例如：买了3箱苹果，每箱88块钱"
-      />
-      <div class="composer-actions">
-        <button class="circle-button" type="button" @click="prompt = '收到李姐还的500块'">
-          <span class="icon">mic</span>
+    <template #bottom-bar>
+      <nav class="voice-bar">
+        <button class="input-btn" type="button">
+          <span class="icon">keyboard</span>
         </button>
-        <button class="circle-button" type="button" @click="prompt = '卖了5袋大米，一袋60'">
+        <button class="mic-btn" type="button" @click="prompt = quickPrompts[0]; submit()">
+          <span class="icon fill">mic</span>
+        </button>
+        <button class="input-btn" type="button" @click="prompt = quickPrompts[1]; submit()">
           <span class="icon">add_a_photo</span>
         </button>
-        <button class="button-primary send" type="button" @click="submit">发送给 AI</button>
-      </div>
-    </section>
+      </nav>
+    </template>
   </ScreenLayout>
 </template>
 
@@ -167,7 +163,7 @@ const submit = () => {
 .hero h2 {
   margin: 10px 0 0;
   font-family: 'Noto Serif SC', serif;
-  font-size: 30px;
+  font-size: 22px;
   line-height: 1.35;
   color: var(--primary-strong);
 }
@@ -309,41 +305,42 @@ const submit = () => {
   margin-top: 16px;
 }
 
-.composer {
-  margin-top: 18px;
-  padding: 18px;
-}
-
-.composer-input {
-  width: 100%;
-  resize: none;
-  padding: 0;
-  background: transparent;
-  color: var(--text);
-  font-size: 15px;
-  line-height: 1.8;
-  outline: none;
-}
-
-.composer-actions {
+.voice-bar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
   display: flex;
-  gap: 10px;
   align-items: center;
-  margin-top: 12px;
+  justify-content: space-around;
+  height: 120px;
+  padding: 0 24px;
+  background: #fff;
+  border-top: 1px solid rgba(26, 35, 126, 0.08);
 }
 
-.circle-button {
+.input-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
   background: rgba(26, 35, 126, 0.08);
-  color: var(--primary);
+  color: var(--text-soft);
 }
 
-.send {
-  flex: 1;
+.mic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 12px 32px rgba(0, 6, 102, 0.3);
+  font-size: 32px;
 }
 </style>
